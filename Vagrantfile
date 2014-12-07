@@ -7,6 +7,7 @@ SERVERS = [
   "consul",
   "docs",
   "downloads",
+  "forge",
   "hg",
   "jython-web",
   {:name => "loadbalancer", :box=> "ubuntu/precise64", :codename => "precise", :ports => [20000, 20001, 20002, 20003, 20004, 20100]},

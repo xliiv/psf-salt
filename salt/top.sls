@@ -32,6 +32,10 @@ base:
     - match: nodegroup
     - downloads
 
+  'forge':
+    - match: nodegroup
+    - forge
+
   'hg':
     - match: nodegroup
     - hg
