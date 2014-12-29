@@ -6,11 +6,10 @@ server {
     listen 80 default;
     client_max_body_size 4G;
     server_name _;
+    access_log      /var/log/nginx/kallithea.access.log;
+    error_log       /var/log/nginx/kallithea.error.log;
 
     keepalive_timeout 5;
-
-    # path for static files
-    root /usr/share/kallithea-web;
 
     location / {
         # checks for static file, if not found proxy to app

@@ -1,10 +1,11 @@
 # TODO:
 # rm hardcodes from init-db command
-# configure postgres db
 # finish handling celery (inc: password, which is now kallitheapass)
+# check production.ini for odd settings
+# change vagrant user to e.g. kallithea
 # change 'kallithea' to 'kallithea-demo'
 # add doc
-# change vagrant user to e.g. kallithea
+# configure postgres db: low priority (it's demo instance)
 
 include:
   - nginx
@@ -27,7 +28,6 @@ kallithea:
       - file: /etc/init/kallithea.conf
     - require:
       - pkg: kallithea
-      - file: /var/log/kallithea
       - file: /var/run/gunicorn
       - cmd: kallithea-init-db
 
@@ -87,6 +87,7 @@ kallithea-init-db:
   cmd.run:
     - name: ". /kallithea/venv/bin/activate && paster setup-db production.ini --user=admin1 --email=tymoteusz.jankowski@gmail.com --password=admin1 --repos=/kallithea/repos --force-yes"
     - cwd: /kallithea/data/
+    - user: vagrant
     - require:
         - pkg: kallithea
         - virtualenv: /kallithea/venv
@@ -135,16 +136,3 @@ kallithea-init-db:
     - mode: 644
     - require:
       - sls: nginx
-
-/var/log/kallithea:
-  file.directory:
-    - user: root
-    - group: vagrant
-    - dir_mode: 775
-    - file_mode: 664
-    - recurse:
-      - user
-      - group
-      - mode
-    - require:
-      - pkg: kallithea
