@@ -9,14 +9,16 @@ Development:
 ------------
 
 Forge:
-    From psf-salt dir do::
+^^^^^^
 
-        $ vagrant up salt-master
-        $ vagrant up forge
-        $ vagrant ssh forge
-        vagrant@forge:~$ w3m http://127.0.0.1:80
+From psf-salt dir do::
 
-    Now you can sign in as a test admin user:
-        User: admin1
-        password: admin1
+    $ vagrant up salt-master
+    $ vagrant up forge
+    $ vagrant ssh forge
+    vagrant@forge:~$ w3m http://127.0.0.1:80
+
+Now you can sign in as a test admin user:
+    * User: admin1
+    * password: admin1
 
