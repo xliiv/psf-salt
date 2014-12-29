@@ -15,3 +15,8 @@ Forge:
         $ vagrant up forge
         $ vagrant ssh forge
         vagrant@forge:~$ w3m http://127.0.0.1:80
+
+    Now you can sign in as a test admin user:
+        User: admin1
+        password: admin1
+

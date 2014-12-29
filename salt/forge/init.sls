@@ -1,5 +1,4 @@
 # TODO:
-# rm hardcodes from init-db command
 # finish handling celery (inc: password, which is now kallitheapass)
 # check production.ini for odd settings
 # change vagrant user to e.g. kallithea
@@ -85,7 +84,7 @@ kallitheavhost:
 
 kallithea-init-db:
   cmd.run:
-    - name: ". /kallithea/venv/bin/activate && paster setup-db production.ini --user=admin1 --email=tymoteusz.jankowski@gmail.com --password=admin1 --repos=/kallithea/repos --force-yes"
+    - name: ". /kallithea/venv/bin/activate && paster setup-db production.ini --user=admin1 --email=example@example.com --password=admin1 --repos=/kallithea/repos --force-yes"
     - cwd: /kallithea/data/
     - user: vagrant
     - require:
