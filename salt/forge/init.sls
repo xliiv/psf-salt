@@ -1,5 +1,4 @@
 # TODO:
-# add rule to firewall
 # update static_files path in wsgi.py
 # change vagrant user to e.g. kallithea
 # configure postgres db
@@ -94,7 +93,7 @@ kallithea-init-db:
         - file: /kallithea/repos
         - file: /kallithea/data/production.ini
 
-# kallithea as a upstart service
+# kallithea as an upstart service
 /etc/kallithea:
   file.directory:
     - group: vagrant

@@ -27,6 +27,10 @@ base:
     - firewall.rs-lb-backend
     - groups.downloads
 
+  'forge':
+    - match: nodegroup
+    - firewall.forge
+
   'hg':
     - match: nodegroup
     - firewall.rs-lb-backend
