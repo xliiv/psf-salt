@@ -1,10 +1,10 @@
 # TODO:
-# update static_files path in wsgi.py
-# change vagrant user to e.g. kallithea
-# configure postgres db
 # rm hardcodes from init-db command
+# configure postgres db
 # finish handling celery (inc: password, which is now kallitheapass)
+# change 'kallithea' to 'kallithea-demo'
 # add doc
+# change vagrant user to e.g. kallithea
 
 include:
   - nginx
