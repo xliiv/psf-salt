@@ -1,8 +1,10 @@
 # TODO::
-# check production.ini for odd settings
 # change vagrant user to e.g. kallithea
 # change 'forge' to 'kallithea-demo'
 # add doc
+## disclaimer
+# It's basic version using sqlite database only for demo purpose with many
+# things to be improved.
 
 include:
   - nginx
