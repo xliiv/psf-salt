@@ -1,14 +1,11 @@
-# TODO:
-# finish handling celery (inc: password, which is now kallitheapass)
+# TODO::
 # check production.ini for odd settings
 # change vagrant user to e.g. kallithea
-# change 'kallithea' to 'kallithea-demo'
+# change 'forge' to 'kallithea-demo'
 # add doc
-# configure postgres db: low priority (it's demo instance)
 
 include:
   - nginx
-  - postgresql.client
 
 kallithea:
   pkg.installed:
@@ -17,7 +14,6 @@ kallithea:
       - python-dev
       - python-pip
       - python-virtualenv
-      - rabbitmq-server
 
   service.running:
     - enable: True
@@ -58,19 +54,6 @@ kallithea:
         - require:
             - file: /kallithea
             - pkg: kallithea
-
-kallitheauser:
-    rabbitmq_user.present:
-# TODO: need password
-        - password: kallitheapass
-        - force: True
-
-kallitheavhost:
-    rabbitmq_vhost.present:
-        - user: kallitheauser
-        - conf: .*
-        - write: .*
-        - read: .*
 
 # kallithea initialization db, etc.
 /kallithea/data/production.ini:
