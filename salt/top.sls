@@ -32,9 +32,9 @@ base:
     - match: nodegroup
     - downloads
 
-  'forge':
+  'kallitheaDemo':
     - match: nodegroup
-    - forge
+    - kallitheaDemo
 
   'hg':
     - match: nodegroup

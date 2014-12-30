@@ -7,7 +7,7 @@ SERVERS = [
   "consul",
   "docs",
   "downloads",
-  "forge",
+  "kallitheaDemo",
   "hg",
   "jython-web",
   {:name => "loadbalancer", :box=> "ubuntu/precise64", :codename => "precise", :ports => [20000, 20001, 20002, 20003, 20004, 20100]},
@@ -81,6 +81,7 @@ Vagrant.configure("2") do |config|
       ports.each do |port|
         s_config.vm.network "forwarded_port", guest: port, host: port
       end
+      s_config.vm.network "forwarded_port", guest: 80, host: 8000
 
       if codename == "precise"
         s_config.vm.provision :shell, inline: "add-apt-repository ppa:chris-lea/zeromq -y"
