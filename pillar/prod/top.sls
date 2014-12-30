@@ -30,6 +30,10 @@ base:
     - groups.downloads
     - secrets.backup.downloads
 
+  'elasticsearch':
+    - match: nodegroup
+    - firewall.elasticsearch
+
   'hg':
     - match: nodegroup
     - firewall.rs-lb-backend
@@ -81,6 +85,22 @@ base:
     - match: nodegroup
     - secrets.postgresql-users.replica
 
+  'pydotorg':
+    - match: nodegroup
+    - firewall.rs-lb-backend
+    - secrets.pydotorg
+    - secrets.pydotorg-mail
+
+  'pydotorg-staging':
+    - match: nodegroup
+    - pydotorg.staging
+    - secrets.postgresql-users.pydotorg-staging
+
+  'pydotorg-prod':
+    - match: nodegroup
+    - pydotorg.prod
+    - secrets.postgresql-users.pydotorg-prod
+
   'pythontest':
     - match: nodegroup
     - firewall.http
@@ -90,6 +110,14 @@ base:
     - firewall.salt
     - secrets.dyn
 
+  'speed-web':
+    - match: nodegroup
+    - firewall.rs-lb-backend
+
   'tracker':
     - match: nodegroup
     - secrets.postgresql-users.tracker
+
+  'web-pypa':
+    - match: nodegroup
+    - firewall.rs-lb-backend

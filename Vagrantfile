@@ -10,13 +10,15 @@ SERVERS = [
   "kallithea-demo",
   "hg",
   "jython-web",
-  {:name => "loadbalancer", :box=> "ubuntu/precise64", :codename => "precise", :ports => [20000, 20001, 20002, 20003, 20004, 20100]},
+  {:name => "loadbalancer", :box=> "ubuntu/precise64", :codename => "precise", :ports => [20000, 20001, 20002, 20003, 20004, 20005, 20100]},
   "monitoring",
   "packages",
   "planet",
   {:name => "postgresql-primary", :roles => ["postgresql", "postgresql-primary"]},
   {:name => "postgresql-replica", :roles => ["postgresql", "postgresql-replica"]},
+  "speed-web",
   "tracker",
+  "pypa-web",
 ]
 
 SUBNET1 = "192.168.50"

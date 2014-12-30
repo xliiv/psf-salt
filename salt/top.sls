@@ -15,6 +15,7 @@ base:
     - monitoring.client
     - unattended-upgrades
     - tls
+    - rsyslog
 
   'backup-server':
     - match: nodegroup
@@ -32,9 +33,9 @@ base:
     - match: nodegroup
     - downloads
 
-  'kallithea-demo':
+  'elasticsearch':
     - match: nodegroup
-    - kallithea-demo
+    - elasticsearch
 
   'hg':
     - match: nodegroup
@@ -43,6 +44,10 @@ base:
   'jython-web':
     - match: nodegroup
     - jython
+
+  'kallithea-demo':
+    - match: nodegroup
+    - kallithea-demo
 
   'loadbalancer':
     - match: nodegroup
@@ -64,6 +69,11 @@ base:
     - match: nodegroup
     - postgresql.server
 
+  'pydotorg':
+    - match: nodegroup
+    - postgresql.client
+    - pydotorg
+
   'pythontest':
     - match: nodegroup
     - pythontest
@@ -72,6 +82,14 @@ base:
     - match: nodegroup
     - dns
 
+  'speed-web':
+    - match: nodegroup
+    - speed.web
+
   'tracker':
     - match: nodegroup
     - postgresql.client
+
+  'web-pypa':
+    - match: nodegroup
+    - pypa.bootstrap

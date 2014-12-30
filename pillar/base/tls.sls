@@ -4,7 +4,6 @@
 tls:
   ciphers:
     default: ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:!AES256:!aNULL:!eNULL:!MD5:!DSS:!PSK:!SRP
-    haproxy/bind: ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:3DES:!AES256:!aNULL:!eNULL:!MD5:!DSS:!PSK:!SRP
 
   # We should drop the SHA1 options here once we've fully migrated off of SHA1
   pins:
@@ -34,6 +33,10 @@ tls:
       roles:
         - downloads
 
+    pydotorg.psf.io:
+      roles:
+        - pydotorg
+
     hg.psf.io:
       roles:
         - hg
@@ -46,3 +49,11 @@ tls:
       days: 7
       roles:
         - postgresql
+
+    speed-web.psf.io:
+      roles:
+        - speed-web
+
+    bootstrap.pypa.psf.io:
+      roles:
+        - web-pypa

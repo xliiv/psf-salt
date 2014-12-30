@@ -42,6 +42,9 @@ global
     # Allow more entries in the session cache to improve session cache hit rate
     tune.ssl.cachesize 500000
 
+    # Lower the amount of space we reserve for header rewriting
+    tune.maxrewrite 1024
+
 
 defaults
     log     global
@@ -78,6 +81,7 @@ listen tls:
     bind :20001 ssl npn spdy/3.1,http/1.1 crt ev.python.org.pem
     bind :20002 ssl npn spdy/3.1,http/1.1 crt hg.python.org.pem
     bind :20003 ssl npn spdy/3.1,http/1.1 crt star.python.org.pem
+    bind :20005 ssl npn spdy/3.1,http/1.1 crt star.pypa.io.pem
 
     mode tcp
 
@@ -201,7 +205,7 @@ backend {{ service }}
 
     {% if config.get("hpkp", True) and pillar["tls"].get("pins") -%}
     # Add HPKP headers for anything that is configured to have them.
-    http-response set-header Public-Key-Pins max-age={{ config.get("hpkp_seconds", 600) }};\ {% if config.get("hpkp_subdomains", True) %}includeSubDomains;\ {% endif %}{% for pin in pillar["tls"]["pins"] %}pin-sha256="{{ pin }}";\ {% endfor %}
+    http-response set-header Public-Key-Pins max-age={{ config.get("hpkp_seconds", 86400) }};\ {% if config.get("hpkp_subdomains", True) %}includeSubDomains;\ {% endif %}{% for pin in pillar["tls"]["pins"] %}pin-sha256="{{ pin }}";\ {% endfor %}
     {%- endif %}
 
     {% for item in config.get("extra", []) -%}
@@ -209,7 +213,7 @@ backend {{ service }}
     {% endfor -%}
 
     {{ "{{" }}range service "{{ service }}@{{ pillar.dc }}"}}
-    {% raw %}server {{.Name}} {{.Address}}:{{.Port}}{% endraw %}{% if config.get("check", True) %} check{% endif %} ssl force-tlsv12 verifyhost {{ config.get("verify_host", service + ".psf.io") }} ca-file {{ config.get("ca-file", "PSF_CA.pem") }}{{ "{{end}}" }}
+    {% raw %}server {{.Name}} {{.Address}}:{{.Port}}{% endraw %}{% if config.get("check", True) %} check{% endif %} ssl verifyhost {{ config.get("verify_host", service + ".psf.io") }} ca-file {{ config.get("ca-file", "PSF_CA.pem") }}{{ "{{end}}" }}
 
 {% endfor %}
 
