@@ -27,9 +27,9 @@ base:
     - firewall.rs-lb-backend
     - groups.downloads
 
-  'kallitheaDemo':
+  'kallithea-demo':
     - match: nodegroup
-    - firewall.kallitheaDemo
+    - firewall.kallithea-demo
 
   'hg':
     - match: nodegroup

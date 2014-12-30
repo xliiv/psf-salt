@@ -14,9 +14,9 @@ Forge:
 From psf-salt dir do::
 
     $ vagrant up salt-master
-    $ vagrant up kallitheaDemo
-    $ vagrant ssh kallitheaDemo
-    vagrant@kallitheaDemo:~$ w3m http://127.0.0.1:80
+    $ vagrant up kallithea-demo
+    $ vagrant ssh kallithea-demo
+    vagrant@kallithea-demo:~$ w3m http://127.0.0.1:80
 
 Now you can sign in as a test admin user:
     * User: admin1

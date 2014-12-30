@@ -11,7 +11,7 @@ roles:
   consul: "consul.vagrant.psf.io"
   docs: "docs.vagrant.psf.io"
   downloads: "downloads.vagrant.psf.io"
-  kallitheaDemo: "kallitheaDemo.vagrant.psf.io"
+  kallithea-demo: "kallithea-demo.vagrant.psf.io"
   hg: "hg.vagrant.psf.io"
   jython-web: "jython-web.vagrant.psf.io"
   loadbalancer: "loadbalancer.vagrant.psf.io"

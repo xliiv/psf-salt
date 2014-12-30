@@ -32,9 +32,9 @@ base:
     - match: nodegroup
     - downloads
 
-  'kallitheaDemo':
+  'kallithea-demo':
     - match: nodegroup
-    - kallitheaDemo
+    - kallithea-demo
 
   'hg':
     - match: nodegroup

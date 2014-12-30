@@ -1,5 +1,5 @@
 # TODO::
-# change 'kallitheaDemo' to 'kallithea-demo'
+# change 'kallithea-demo' to 'kallithea-demo'
 # add doc
 ## disclaimer
 # It's a basic version with simple solutions (like using sqlite database and so
@@ -56,7 +56,7 @@ kallithea:
     virtualenv.managed:
         - no_site_packages: True
         - runas: kallithea
-        - requirements: salt://kallitheaDemo/configs/requirements.txt
+        - requirements: salt://kallithea-demo/configs/requirements.txt
         - require:
             - file: /kallithea
             - pkg: kallithea
@@ -64,7 +64,7 @@ kallithea:
 # kallithea initialization db, etc.
 /kallithea/data/production.ini:
     file.managed:
-        - source: salt://kallitheaDemo/configs/production.ini
+        - source: salt://kallithea-demo/configs/production.ini
         - user: kallithea
         - group: kallithea
         - mode: 750
@@ -91,7 +91,7 @@ kallithea-init-db:
 
 /etc/init/kallithea.conf:
   file.managed:
-    - source: salt://kallitheaDemo/configs/kallithea-init.conf
+    - source: salt://kallithea-demo/configs/kallithea-init.conf
     - user: root
     - group: root
     - mode: 644
@@ -99,7 +99,7 @@ kallithea-init-db:
 # kallithea by gunicorn
 /kallithea/data/wsgi.py:
     file.managed:
-        - source: salt://kallitheaDemo/configs/wsgi.py
+        - source: salt://kallithea-demo/configs/wsgi.py
         - require:
           - file: /kallithea/data
 
@@ -116,7 +116,7 @@ kallithea-init-db:
 # nginx stuff
 /etc/nginx/sites.d/kallithea.conf:
   file.managed:
-    - source: salt://kallitheaDemo/configs/kallithea-nginx.conf.jinja
+    - source: salt://kallithea-demo/configs/kallithea-nginx.conf.jinja
     - template: jinja
     - user: root
     - group: root
