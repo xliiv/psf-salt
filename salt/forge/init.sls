@@ -1,13 +1,17 @@
 # TODO::
-# change vagrant user to e.g. kallithea
 # change 'forge' to 'kallithea-demo'
 # add doc
 ## disclaimer
-# It's basic version using sqlite database only for demo purpose with many
-# things to be improved.
+# It's a basic version with simple solutions (like using sqlite database and so
+# on..) only for demo purpose with many things to be improved.
 
 include:
   - nginx
+
+kallithea-user:
+  user.present:
+    - name: kallithea
+    - createhome: False
 
 kallithea:
   pkg.installed:
@@ -30,20 +34,20 @@ kallithea:
 
 /kallithea:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: kallithea
+    - group: kallithea
     - mode: 750
 /kallithea/repos:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: kallithea
+    - group: kallithea
     - mode: 750
     - require:
       - file: /kallithea
 /kallithea/data:
   file.directory:
-    - user: vagrant
-    - group: vagrant
+    - user: kallithea
+    - group: kallithea
     - mode: 750
     - require:
       - file: /kallithea
@@ -51,7 +55,7 @@ kallithea:
 /kallithea/venv:
     virtualenv.managed:
         - no_site_packages: True
-        - runas: vagrant
+        - runas: kallithea
         - requirements: salt://forge/configs/requirements.txt
         - require:
             - file: /kallithea
@@ -61,17 +65,16 @@ kallithea:
 /kallithea/data/production.ini:
     file.managed:
         - source: salt://forge/configs/production.ini
-        - user: vagrant
-        - group: vagrant
+        - user: kallithea
+        - group: kallithea
         - mode: 750
         - require:
           - file: /kallithea/data
-
 kallithea-init-db:
   cmd.run:
     - name: ". /kallithea/venv/bin/activate && paster setup-db production.ini --user=admin1 --email=example@example.com --password=admin1 --repos=/kallithea/repos --force-yes"
     - cwd: /kallithea/data/
-    - user: vagrant
+    - user: kallithea
     - require:
         - pkg: kallithea
         - virtualenv: /kallithea/venv
@@ -81,7 +84,7 @@ kallithea-init-db:
 # kallithea as an upstart service
 /etc/kallithea:
   file.directory:
-    - group: vagrant
+    - group: kallithea
     - mode: 750
     - require:
       - pkg: kallithea
