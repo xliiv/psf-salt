@@ -1,10 +1,3 @@
-# TODO::
-# change 'kallithea-demo' to 'kallithea-demo'
-# add doc
-## disclaimer
-# It's a basic version with simple solutions (like using sqlite database and so
-# on..) only for demo purpose with many things to be improved.
-
 include:
   - nginx
 
